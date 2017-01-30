@@ -1,7 +1,7 @@
 ---
 - name: create ec2 instance
   ec2:
-    keypair: {{ aec2_keypair }}
+    keypair: {{ ec2_keypair }}
     type: {{ ec2_type }}
     image: {{ ec2_image }}
     region: {{ ec2_region }}
