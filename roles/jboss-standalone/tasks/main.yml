@@ -6,8 +6,8 @@
    - java-1.7.0-openjdk
    - libselinux-python
    - libsemanage-python
-   tags:
-     - install
+  tags:
+    - install
 
 - name: Download JBoss from jboss.org
   get_url:
