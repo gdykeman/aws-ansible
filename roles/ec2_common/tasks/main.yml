@@ -29,16 +29,3 @@
   delegate_to: localhost
   tags:
     - provision
-
-- name: gather ec2 facts
-  action: ec2_facts
-  tags:
-    - terminate
-
-- name: terminate user instances
-  ec2:
-    state: absent
-    region: "{{ ec2_region }}"
-    instance_ids: "{{ ansible_ec2_instance_id }}"
-  tags:
-    - terminate

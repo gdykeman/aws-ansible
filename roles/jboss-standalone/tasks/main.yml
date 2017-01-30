@@ -6,37 +6,51 @@
    - java-1.7.0-openjdk
    - libselinux-python
    - libsemanage-python
+   tags:
+     - install
 
 - name: Download JBoss from jboss.org
   get_url:
     url: http://download.jboss.org/jbossas/7.1/jboss-as-7.1.1.Final/jboss-as-7.1.1.Final.zip
     dest: /opt/jboss-as-7.1.1.Final.zip
+  tags:
+    - install
 
 - name: Extract archive
   unarchive:
     dest: /usr/share src=/opt/jboss-as-7.1.1.Final.zip
     creates: /usr/share/jboss-as
     copy: no
+  tags:
+    - install
 
   # Rename the dir to avoid encoding the version in the init script
 - name: Rename install directory
   command: chdir=/usr/share /bin/mv jboss-as-7.1.1.Final jboss-as creates=/usr/share/jboss-as
+  tags:
+    - install
 
 - name: Copying standalone.xml configuration file
   template:
     src: standalone.xml
     dest: /usr/share/jboss-as/standalone/configuration/
   notify: restart jboss
+  tags:
+    - install
 
 - name: Add group "jboss"
   group:
     name: jboss
+  tags:
+    - install
 
 - name: Add user "jboss"
   user:
     name: jboss
     group: jboss
     home: /usr/share/jboss-as
+  tags:
+    - install
 
 - name: Change ownership of JBoss installation
   file:
@@ -45,21 +59,29 @@
     group: jboss
     state: directory
     recurse: yes
+  tags:
+    - install
 
 - name: Copy the init script
   copy:
     src: jboss-as-standalone.sh
     dest: /etc/init.d/jboss
     mode: 0755
+  tags:
+    - install
 
 - name: Workaround for systemd bug
   shell: service jboss start && chkconfig jboss on
+  tags:
+    - install
 
 - name: Enable JBoss to be started at boot
   service:
     name: jboss
     enabled: yes
     state: started
+  tags:
+    - install
 
 - name: deploy iptables rules
   template:
@@ -67,18 +89,24 @@
     dest: /etc/sysconfig/iptables
   when: ansible_distribution_major_version != "7"
   notify: restart iptables
+  tags:
+    - install
 
 - name: Ensure that firewalld is installed
   yum:
     name: firewalld
     state: present
   when: ansible_distribution_major_version == "7"
+  tags:
+    - install
 
 - name: Ensure that firewalld is started
   service:
     name: firewalld
     state: started
   when: ansible_distribution_major_version == "7"
+  tags:
+    - install
 
 - name: deploy firewalld rules
   firewalld:
@@ -90,3 +118,5 @@
   with_items:
   - "{{ http_port }}/tcp"
   - "{{ https_port }}/tcp"
+  tags:
+    - install
