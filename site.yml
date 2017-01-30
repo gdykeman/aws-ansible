@@ -7,9 +7,9 @@
   roles:
     - ec2_common
 
-# - name: Install JBoss and Deploy Apps
-#   hosts: all
-#
-#   roles:
-#     - jboss-standalone
-#     - java-app
+- name: Install JBoss and Deploy Apps
+  hosts: all
+
+  roles:
+    - jboss-standalone
+    - java-app
