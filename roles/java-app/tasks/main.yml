@@ -1,21 +1,6 @@
 ---
 - name: Copy application WAR file to host
   copy:
-    src: jboss-helloworld.war
-    dest: /tmp
-  tags:
-    - deploy
-
-- name: Deploy HelloWorld to JBoss
-  jboss:
-    deploy_path: /usr/share/jboss-as/standalone/deployments/
-    src: /tmp/jboss-helloworld.war deployment=helloworld.war
-    state: present
-  tags:
-    - deploy
-
-- name: Copy application WAR file to host
-  copy:
     src: ticket-monster.war
     dest: /tmp
   tags:
@@ -24,7 +9,8 @@
 - name: Deploy Ticket Monster to JBoss
   jboss:
     deploy_path: /usr/share/jboss-as/standalone/deployments/
-    src: /tmp/ticket-monster.war deployment=ticket-monster.war
+    src: /tmp/ticket-monster.war
+    deployment: ticket-monster.war
     state: present
   tags:
     - deploy
