@@ -18,7 +18,8 @@
 
 - name: Extract archive
   unarchive:
-    dest: /usr/share src=/opt/jboss-as-7.1.1.Final.zip
+    src: /opt/jboss-as-7.1.1.Final.zip
+    dest: /usr/share
     creates: /usr/share/jboss-as
     copy: no
   tags:
