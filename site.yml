@@ -1,8 +1,16 @@
 ---
+- name: Create EC2 Instances for JBoss Demo
+  hosts: 127.0.0.1
+  connection: local
+  gather_facts: false
+
+  roles:
+    - ec2_common
+
+- name: Install JBoss and Deploy Apps
 - hosts: all
   become: yes
 
   roles:
-    - ec2_common
     - jboss-standalone
     - java-app
