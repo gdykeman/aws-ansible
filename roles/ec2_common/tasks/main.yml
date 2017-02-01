@@ -29,3 +29,6 @@
   delegate_to: localhost
   tags:
     - provision
+
+- pause:
+    minutes: 2
