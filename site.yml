@@ -7,6 +7,9 @@
   roles:
     - ec2_common
 
+- pause:
+    minutes: 2
+    
 - name: Install JBoss and Deploy Apps
   hosts: all
 
