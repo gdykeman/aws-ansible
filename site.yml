@@ -7,9 +7,10 @@
   roles:
     - ec2_common
 
-- pause:
+- name: pause this playbook to allow Tower's inventory to refresh
+  pause:
     minutes: 2
-    
+
 - name: Install JBoss and Deploy Apps
   hosts: all
 
