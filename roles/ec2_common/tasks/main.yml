@@ -30,5 +30,6 @@
   tags:
     - provision
 
-- pause:
-    minutes: 2
+- name: Pause for Tower inventory to refresh
+  pause:
+    minutes: 5
