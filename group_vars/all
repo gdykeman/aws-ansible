@@ -6,6 +6,8 @@ ec2_region: us-east-1
 ec2_group_id: sg-12a98e6f
 ec2_vpc_subnet_id: subnet-b70447fe
 ec2_instance_count: 1
+# This will be overridden when running playbook from Tower
+tower_user_name: bhirsch 
 
 # Define ports required for JBoss Installation
 http_port: 8080
