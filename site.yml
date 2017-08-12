@@ -1,6 +1,6 @@
 ---
 - name: Create EC2 Instances for JBoss Demo
-  hosts: 127.0.0.1
+  hosts: localhost
   connection: local
   gather_facts: false
 
