@@ -1,5 +1,5 @@
 ---
-- name: create ec2 instance
+- name: teardown ec2 instance
   ec2:
     keypair: "{{ ec2_keypair }}"
     type: "{{ ec2_type }}"
@@ -14,7 +14,7 @@
       ansible_lab: true
       user_id: "{{ tower_user_name }}"
     count_tag:
-      name: "{{ tower_user_name }}-demo"      
+      name: "{{ tower_user_name }}-demo"
     wait: true
   register: ec2
   tags:
