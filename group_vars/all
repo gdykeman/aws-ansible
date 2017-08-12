@@ -9,6 +9,9 @@ ec2_instance_count: 1
 # This will be overridden when running playbook from Tower
 tower_user_name: jbossuser
 
+ansible_user: ec2-user
+ansible_ssh_private_key_file: ~/.ssh/gdykeman.pem
+
 # Define ports required for JBoss Installation
 http_port: 8080
 https_port: 8443
