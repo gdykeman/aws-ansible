@@ -8,7 +8,7 @@
     - name: SEND FIRST COMPLIANCE CONFIRM MESSAGE TO SLACK
       uri:
         url: "{{response_url}}"
-        body: '{"text":"Provisioning complete!"}'
+        body: '{"text":"AWS Provisioning complete!"}'
         method: POST
         validate_certs: no
       delegate_to: localhost
@@ -17,7 +17,7 @@
     - name: SEND SECOND COMPLIANCE CONFIRM MESSAGE TO SLACK
       uri:
         url: "{{response_url}}"
-        body: '{"text":"AWS Apache Web Server reachable at {{public_ip}} "}'
+        body: '{"text":"AWS Apache Web Server is reachable at {{public_ip}} "}'
         method: POST
         validate_certs: no
       delegate_to: localhost
