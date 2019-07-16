@@ -11,7 +11,7 @@
   tasks:
     - name: install  packages
       yum:
-        name: "{{ httpd_packages }}"
+        name: "{{ packages }}"
         state: present
 
     - name: Ensure state of apache_services
