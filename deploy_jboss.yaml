@@ -1,7 +1,12 @@
 - name: Install JBoss and Deploy Apps
-  hosts: new_host
+  hosts: all
   become: true
 
   roles:
     - jboss-standalone
     - java-app
+
+  tasks:
+    - name: Display Public IP
+      debug:
+        var: ansible_host
