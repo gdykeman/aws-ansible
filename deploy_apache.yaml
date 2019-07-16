@@ -19,8 +19,14 @@
         name: httpd
         enabled: yes
         state: started
-  
-    - name: "Ensure state of apache_ports"
+
+    - name: Ensure state of firewalld
+      service:
+        name: firewalld
+        enabled: yes
+        state: started  
+
+    - name: Ensure state of apache_ports
       firewalld:
         port: 80
         zone: public
