@@ -1,0 +1,27 @@
+- name: Install JBoss and Deploy Apps
+  hosts: all
+  become: true
+
+  vars:
+    httpd_packages:
+      - httpd
+      - mod_wsgi
+
+  tasks:
+    - name: install httpd packages
+      yum:
+        name: "{{ httpd_packages }}"
+        state: present
+
+    - name: create site-enabled directory
+      file:
+        name: /etc/httpd/conf/sites-enabled
+        state: directory
+            
+    - name: copy apache directory
+      copy:
+        src: files/apache/
+        dest: /var/www/html/
+    
+    - debug:
+        var: ansible_host

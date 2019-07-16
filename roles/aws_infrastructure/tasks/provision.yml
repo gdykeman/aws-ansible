@@ -1,17 +1,6 @@
-- name: ensure workshop folder {{ec2_name_prefix}} exists
-  file:
-    path: "{{ playbook_dir }}/{{ec2_name_prefix}}"
-    state: directory
-
-## These AWS resources are used for every workshop type
 ## This includes VPC, subnet, Security Group, Internet Gateway and route table
 - name: provision aws resources
   include_tasks: resources.yml
-
-## This duplicates the above when networking workshop uses 2 VPCs
-- name: provision networking aws resources
-  include_tasks: resources_networking.yml
-  when: networking
 
 ## control node setup ###
 - name: set control node type
