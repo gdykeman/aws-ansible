@@ -3,12 +3,13 @@
   become: true
 
   vars:
-    httpd_packages:
+    packages:
       - httpd
       - mod_wsgi
+      - firewalld
 
   tasks:
-    - name: install httpd packages
+    - name: install  packages
       yum:
         name: "{{ httpd_packages }}"
         state: present
