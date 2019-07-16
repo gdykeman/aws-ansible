@@ -28,7 +28,7 @@
 
     - name: Ensure state of apache_ports
       firewalld:
-        port: 80/TCP
+        port: 80/tcp
         zone: public
         permanent: yes
         immediate: true
