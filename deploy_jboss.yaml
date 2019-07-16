@@ -1,0 +1,7 @@
+- name: Install JBoss and Deploy Apps
+  hosts: new_host
+  become: true
+
+  roles:
+    - jboss-standalone
+    - java-app

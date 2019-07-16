@@ -1,0 +1,38 @@
+---
+ec2_name_prefix: AWS-WebServer
+ec2_region: us-east-2
+ec2_wait: yes
+#need to circle back and fix this for teardown - sean
+ec2_az: "{{ec2_region}}a"
+ec2_subnet: "172.16.0.0/16"
+ec2_subnet2: "172.17.0.0/16"
+networking: false
+ssh_port: 22
+linklight_user: gdykeman
+vm_total: 1
+
+ec2_control_node:
+  ansible: rhel7-tower
+# Instance types used for lab configurations
+ec2_instance_types:
+  # Look for owner 309956199498 to find official Red Hat AMIs
+  rhel7-tower:
+    owners: 309956199498
+    size: t2.medium
+    os_type: linux
+    disk_space: 20
+    architecture: x86_64
+    filter: 'RHEL-7.4*GA*'
+
+# Login names used for SSH connections. These are baked in to the AMIs.
+ec2_login_names:
+  rhel7-tower: ec2-user
+  rhel7: ec2-user
+  centos7-tower: centos
+  centos7: centos
+  ubuntu14: ubuntu
+  ubuntu16: ubuntu
+  csr-byol: ec2-user
+  junos-byol: jnpr
+  f5-prelicensed: admin
+  f5_hosts: ec2-user

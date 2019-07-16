@@ -1,8 +1,12 @@
----
-- name: Create EC2 Instances for JBoss Demo
+- name: Teardown AWS Infrastructure
   hosts: localhost
   connection: local
-  gather_facts: false
+  become: no
+  gather_facts: no
 
   roles:
-    - ec2_teardown
+    - role: aws_infrastructure
+      vars: 
+        ec2_wait: no
+        teardown: true
+        state: absent

@@ -1,16 +1,19 @@
 ---
-- name: Create EC2 Instances for JBoss Demo
+- name: Provision AWS Infrastructure
   hosts: localhost
   connection: local
   gather_facts: false
 
   roles:
-    - ec2_common
+    - role: aws_infrastructure
+      vars:
+        teardown: no
 
-- name: Install JBoss and Deploy Apps
-  hosts: new_host
-  become: true
+# - name: Create EC2 Instances for JBoss Demo
+#   hosts: localhost
+#   connection: local
+#   gather_facts: false
 
-  roles:
-    - jboss-standalone
-    - java-app
+#   roles:
+#     - ec2_common
+
