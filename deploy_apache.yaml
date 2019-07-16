@@ -23,5 +23,8 @@
         src: files/apache/
         dest: /var/www/html/
     
+    - set_stats:
+        public_ip: ansible_host
+    
     - debug:
-        var: ansible_host
+        var: public_ip

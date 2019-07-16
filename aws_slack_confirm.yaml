@@ -1,0 +1,27 @@
+---
+- name: AWS Slack Confirm
+  hosts: localhost
+  connection: network_cli
+  gather_facts: no
+
+  vars:
+    response_url: 'https://hooks.slack.com/services/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'
+
+  tasks:
+    - name: SEND FIRST COMPLIANCE CONFIRM MESSAGE TO SLACK
+      uri:
+        url: "{{response_url}}"
+        body: '{"text":"Provisioning complete!"}'
+        method: POST
+        validate_certs: no
+      delegate_to: localhost
+      run_once: yes
+
+    - name: SEND SECOND COMPLIANCE CONFIRM MESSAGE TO SLACK
+      uri:
+        url: "{{response_url}}"
+        body: '{"text":"Server reachable at {{public_ip}} "}'
+        method: POST
+        validate_certs: no
+      delegate_to: localhost
+      run_once: yes
