@@ -3,21 +3,18 @@
   hosts: localhost
   connection: network_cli
   gather_facts: no
-
+  
   tasks:
-    - name: SEND FIRST COMPLIANCE CONFIRM MESSAGE TO SLACK
-      uri:
-        url: "{{response_url}}"
-        body: '{"text":"AWS Provisioning complete!"}'
-        method: POST
-        validate_certs: no
-      delegate_to: localhost
-      run_once: yes
+    - name: Generate slack response
+      template:
+        src: aws_slack.j2
+        dest: files/aws_response.json
 
-    - name: SEND SECOND COMPLIANCE CONFIRM MESSAGE TO SLACK
+    - name: Send Slack confirmation
       uri:
         url: "{{response_url}}"
-        body: '{"text":"AWS Apache Web Server is reachable at {{public_ip}} "}'
+        body: "{{lookup('file', 'files/aws_response.json')}}"
+        body_format: json
         method: POST
         validate_certs: no
       delegate_to: localhost
