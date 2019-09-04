@@ -2,9 +2,6 @@
 #Specify inventory plugin to use
 plugin: aws_ec2
 
-#The boto profile to use.
-# boto_profile: default
-
 #A list of regions in which to describe EC2 instances. By default this is all regions except us-gov-west-1 and cn-north-1.
 regions:
   - us-east-1
