@@ -1,0 +1,29 @@
+---
+#Specify inventory plugin to use
+plugin: aws_ec2
+
+#The boto profile to use.
+boto_profile: default
+
+#A list of regions in which to describe EC2 instances. By default this is all regions except us-gov-west-1 and cn-north-1.
+regions:
+  - us-east-1
+
+# hostnames:
+#   - tag:name=value
+
+#add hosts to group based on the values of a variable
+# keyed_groups:
+#   - prefix: topology
+#     key: tags.cloud_instance
+
+#add hosts to group based on Jinja2 conditionals
+# groups:
+#   router_nodes:
+#     tags.groups == 'routers'
+#   host_nodes:
+#     tags.groups == 'hosts'
+
+#A dictionary of filter value pairs
+# filters:
+#   tag:network_os: ios
